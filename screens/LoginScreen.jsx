@@ -1,13 +1,14 @@
-import { useCallback, useRef, useState } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-import { Button, PaperProvider, TextInput, TouchableRipple } from "react-native-paper";
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import React from 'react';
+import {useCallback, useRef, useState} from 'react';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import {Button, TextInput, TouchableRipple} from 'react-native-paper';
+import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import companyLogo from '../assets/images/ithena-logo.png';
 
-export default function LoginScreen({ navigation }){
+export default function LoginScreen({navigation}) {
   const bottomSheetRef = useRef(null);
 
-  const handleSheetChanges = useCallback((index) => {
+  const handleSheetChanges = useCallback(index => {
     console.log('handleSheetChanges', index);
   }, []);
 
@@ -15,52 +16,52 @@ export default function LoginScreen({ navigation }){
 
   return (
     <View style={styles.container}>
-      {/* <Appbar.Header>
-        <Appbar.BackAction />
-        <Appbar.Action icon={companyLogo} color="blue" size={125} />
-      </Appbar.Header> */}
-      <View style={{ textAlign: 'center' }}>
+      <View style={{textAlign: 'center'}}>
         <Image
           source={companyLogo}
           alt="ITHENA"
           resizeMode="cover"
-          style={{ height: 71, width: 200 }}
+          style={{height: 71, width: 200}}
         />
       </View>
       <Text style={styles.heading}>Login / Sign up</Text>
       <TextInput
         label={'Email Address'}
         value={text}
-        // #4488c3 - original color
-        textColor="#0076ba"
+        textColor="#0076ba" // #4488c3 - original color
         activeOutlineColor="#0076ba"
         activeUnderlineColor="#0076ba"
         cursorColor="#0076ba"
         style={styles.input}
-        contentStyle={{ paddingLeft: 0 }}
+        contentStyle={{paddingLeft: 0}}
         onChangeText={newText => setText(newText)}
       />
       <TouchableRipple
         rippleColor={'#FFEAE0'}
-        style={{ marginVertical: 25, padding: 5, display: 'flex', alignSelf: 'flex-end' }}
-        onPress={() => navigation.navigate('phonelogin')}
-      >
-        <Text style={{ color: '#ff6a28', fontWeight: '600', fontSize: 12 }}>Quick Try with Phone Number</Text>
+        style={{
+          marginVertical: 25,
+          padding: 5,
+          display: 'flex',
+          alignSelf: 'flex-end',
+        }}
+        onPress={() => navigation.navigate('phonelogin')}>
+        <Text style={{color: '#ff6a28', fontWeight: '600', fontSize: 12}}>
+          Quick Try with Phone Number
+        </Text>
       </TouchableRipple>
       <Button
         mode="contained"
-        // #4488c3 - original color
-        buttonColor="#0076ba"
+        buttonColor="#0076ba" // #4488c3 - original color
         textColor="white"
-        // #d9e7f3 - original ripple color
-        rippleColor="#D0EEFF"
+        rippleColor="#D0EEFF" // #d9e7f3 - original ripple color
         style={styles.button}
-        onPress={() => console.log('Continue pressed!')}
-      >Continue</Button>
+        onPress={() => console.log('Continue pressed!')}>
+        Continue
+      </Button>
       <BottomSheet
+        snapPoints={['20%']}
         ref={bottomSheetRef}
-        onChange={handleSheetChanges}
-      >
+        onChange={handleSheetChanges}>
         <BottomSheetView style={styles.bottomSheet}>
           <Text>Content</Text>
         </BottomSheetView>
@@ -75,20 +76,20 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 30
+    paddingVertical: 30,
   },
   heading: {
     marginVertical: 25,
     fontSize: 18,
     color: '#808080',
     width: '100%',
-    textAlign: 'left'
+    textAlign: 'left',
   },
   button: {
     marginHorizontal: 20,
     marginVertical: 30,
     borderRadius: 10,
-    width: 'auto'
+    width: 'auto',
   },
   input: {
     textAlign: 'left',
@@ -101,6 +102,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 30
-  }
+    paddingVertical: 30,
+  },
 });
